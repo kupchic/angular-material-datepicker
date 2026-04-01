@@ -25,7 +25,7 @@ import {
   ComponentType,
   TemplatePortal,
 } from '@angular/cdk/portal';
-import { DOCUMENT, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -53,7 +53,8 @@ import {
   inject,
   input,
   output,
-  viewChild
+  viewChild,
+  DOCUMENT,
 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
