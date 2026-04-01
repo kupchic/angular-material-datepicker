@@ -1,4 +1,3 @@
-import { AnimationEvent } from '@angular/animations';
 import { CdkTrapFocus, ListKeyManagerModifierKey } from '@angular/cdk/a11y';
 import { Directionality } from '@angular/cdk/bidi';
 import { BooleanInput, coerceBooleanProperty, coerceStringArray } from '@angular/cdk/coercion';
@@ -37,6 +36,7 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
+  HostListener,
   Inject,
   InjectionToken,
   Input,
@@ -71,7 +71,6 @@ import {
   NgxExtractDateTypeFromSelection,
   NgxMatDateSelectionModel,
 } from './date-selection-model';
-import { ngxMatDatepickerAnimations } from './datepicker-animations';
 import { createMissingDateImplError } from './datepicker-errors';
 import { NgxDateFilterFn } from './datepicker-input-base';
 import { NgxMatDatepickerIntl } from './datepicker-intl';
@@ -118,16 +117,13 @@ export const NGX_MAT_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   styleUrls: ['datepicker-content.scss'],
   host: {
     class: 'mat-datepicker-content',
-    '[@transformPanel]': '_animationState',
-    '(@transformPanel.start)': '_handleAnimationEvent($event)',
-    '(@transformPanel.done)': '_handleAnimationEvent($event)',
+    '[class.ngx-mat-datepicker-enter-dropdown]': "_animationState === 'enter-dropdown'",
+    '[class.ngx-mat-datepicker-enter-dialog]': "_animationState === 'enter-dialog'",
+    '[class.ngx-mat-datepicker-exit]': "_animationState === 'void'",
+    '[class.ngx-mat-datepicker-animating]': '_isAnimating',
     '[class.mat-datepicker-content-touch]': 'datepicker.touchUi',
     '[class.mat-datepicker-content-touch-with-time]': '!datepicker.hideTime',
   },
-  animations: [
-    ngxMatDatepickerAnimations.transformPanel,
-    ngxMatDatepickerAnimations.fadeInCalendar,
-  ],
   exportAs: 'ngxMatDatepickerContent',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -146,6 +142,8 @@ export const NGX_MAT_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 export class NgxMatDatepickerContent<S, D = NgxExtractDateTypeFromSelection<S>>
   implements OnInit, AfterViewInit, OnDestroy
 {
+  private _animationTimer: ReturnType<typeof setTimeout> | null = null;
+  private _animationSequence = 0;
   private _subscriptions = new Subscription();
   private _model: NgxMatDateSelectionModel<S, D>;
   /** Reference to the internal calendar component. */
@@ -214,6 +212,7 @@ export class NgxMatDatepickerContent<S, D = NgxExtractDateTypeFromSelection<S>>
     private _changeDetectorRef: ChangeDetectorRef,
     private _globalModel: NgxMatDateSelectionModel<S, D>,
     private _dateAdapter: DateAdapter<D>,
+    private _elementRef: ElementRef<HTMLElement>,
     @Optional()
     @Inject(NGX_MAT_DATE_RANGE_SELECTION_STRATEGY)
     private _rangeSelectionStrategy: NgxMatDateRangeSelectionStrategy<D>,
@@ -231,6 +230,8 @@ export class NgxMatDatepickerContent<S, D = NgxExtractDateTypeFromSelection<S>>
 
   ngOnInit() {
     this._animationState = this.datepicker.touchUi ? 'enter-dialog' : 'enter-dropdown';
+    const enterDuration = this.datepicker.touchUi ? 150 : 120;
+    this._startAnimation(enterDuration);
   }
 
   ngAfterViewInit() {
@@ -243,6 +244,7 @@ export class NgxMatDatepickerContent<S, D = NgxExtractDateTypeFromSelection<S>>
 
   ngOnDestroy() {
     this._subscriptions.unsubscribe();
+    this._clearAnimationTimer();
     this._animationDone.complete();
   }
 
@@ -301,13 +303,53 @@ export class NgxMatDatepickerContent<S, D = NgxExtractDateTypeFromSelection<S>>
   _startExitAnimation() {
     this._animationState = 'void';
     this._changeDetectorRef.markForCheck();
+    this._startAnimation(100);
   }
 
-  _handleAnimationEvent(event: AnimationEvent) {
-    this._isAnimating = event.phaseName === 'start';
+  @HostListener('animationend', ['$event'])
+  _onAnimationEnd(event: AnimationEvent) {
+    if (event.target !== this._elementRef.nativeElement) {
+      return;
+    }
+    this._finishAnimation();
+  }
 
+  @HostListener('animationcancel', ['$event'])
+  _onAnimationCancel(event: AnimationEvent) {
+    if (event.target !== this._elementRef.nativeElement) {
+      return;
+    }
+    this._finishAnimation();
+  }
+
+  private _startAnimation(durationMs: number) {
+    this._isAnimating = true;
+    this._changeDetectorRef.markForCheck();
+    this._clearAnimationTimer();
+    const animationSequence = ++this._animationSequence;
+    this._animationTimer = setTimeout(() => {
+      if (this._animationSequence === animationSequence) {
+        this._finishAnimation();
+      }
+    }, durationMs + 50);
+  }
+
+  private _finishAnimation() {
     if (!this._isAnimating) {
+      return;
+    }
+    this._isAnimating = false;
+    this._changeDetectorRef.markForCheck();
+
+    if (this._animationState === 'void') {
       this._animationDone.next();
+    }
+  }
+
+  private _clearAnimationTimer() {
+    if (this._animationTimer) {
+      clearTimeout(this._animationTimer);
+      this._animationTimer = null;
     }
   }
 
@@ -398,10 +440,10 @@ export interface NgxMatDatepickerPanel<
 /** Base class for a datepicker. */
 @Directive()
 export abstract class NgxMatDatepickerBase<
-    C extends NgxMatDatepickerControl<D>,
-    S,
-    D = NgxExtractDateTypeFromSelection<S>,
-  >
+  C extends NgxMatDatepickerControl<D>,
+  S,
+  D = NgxExtractDateTypeFromSelection<S>,
+>
   implements NgxMatDatepickerPanel<C, S, D>, OnDestroy, OnChanges
 {
   private _scrollStrategy: () => ScrollStrategy;
