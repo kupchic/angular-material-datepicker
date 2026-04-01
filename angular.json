@@ -15,9 +15,11 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-material-components",
+            "outputPath": {
+              "base": "dist/angular-material-components"
+            },
             "index": "src/index.html",
             "polyfills": [
               "src/polyfills.ts"
@@ -38,7 +40,7 @@
             "allowedCommonJsDependencies": [
               "highlight.js"
             ],
-            "main": "src/main.ts"
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -197,18 +199,34 @@
       "style": "scss",
       "skipTests": true,
       "standalone": true,
-      "changeDetection": "OnPush"
+      "changeDetection": "OnPush",
+      "type": "component"
     },
     "@schematics/angular:directive": {
       "prefix": "ngx-mat",
-      "skipTests": true
+      "skipTests": true,
+      "type": "directive"
     },
     "@schematics/angular:pipe": {
       "prefix": "ngx-mat",
-      "skipTests": true
+      "skipTests": true,
+      "typeSeparator": "."
     },
     "@schematics/angular:service": {
-      "skipTests": true
+      "skipTests": true,
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   },
   "cli": {
