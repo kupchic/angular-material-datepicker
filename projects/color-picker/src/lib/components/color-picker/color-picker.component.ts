@@ -28,7 +28,6 @@ import {
   viewChild,
 } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { matDatepickerAnimations } from '@angular/material/datepicker';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject, Subscription, merge } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
@@ -60,10 +59,9 @@ export const NGX_MAT_COLOR_PICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   styleUrls: ['color-picker-content.component.scss'],
   host: {
     class: 'ngx-mat-colorpicker-content',
-    '[@transformPanel]': '"enter"',
+    '[class.ngx-mat-colorpicker-animate]': 'true',
     '[class.ngx-mat-colorpicker-content-touch]': 'picker.touchUi',
   },
-  animations: [matDatepickerAnimations.transformPanel, matDatepickerAnimations.fadeInCalendar],
   exportAs: 'ngxMatColorPickerContent',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

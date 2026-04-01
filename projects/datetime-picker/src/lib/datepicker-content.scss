@@ -29,6 +29,18 @@ $touch-max-height: 815px;
   color: var(--mat-datepicker-calendar-container-text-color, var(--mat-sys-on-surface));
   box-shadow: var(--mat-datepicker-calendar-container-elevation-shadow, 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12));
 
+  &.ngx-mat-datepicker-enter-dropdown {
+    animation: ngx-mat-datepicker-enter-dropdown 120ms cubic-bezier(0, 0, 0.2, 1) both;
+  }
+
+  &.ngx-mat-datepicker-enter-dialog {
+    animation: ngx-mat-datepicker-enter-dialog 150ms cubic-bezier(0, 0, 0.2, 1) both;
+  }
+
+  &.ngx-mat-datepicker-exit {
+    animation: ngx-mat-datepicker-exit 100ms linear both;
+  }
+
   .mat-calendar {
     font-family: var(--mat-datepicker-calendar-text-font, var(--mat-sys-body-medium-font));
     font-size: var(--mat-datepicker-calendar-text-size, var(--mat-sys-body-medium-size));
@@ -53,10 +65,14 @@ $touch-max-height: 815px;
 
     // Hide the button while the overlay is animating, because it's rendered
     // outside of it and it seems to cause scrollbars in some cases (see #21493).
-    .ng-animating & {
+    .ngx-mat-datepicker-animating & {
       display: none;
     }
   }
+}
+
+.mat-datepicker-calendar-animate {
+  animation: ngx-mat-datepicker-fade-in 120ms 100ms cubic-bezier(0.55, 0, 0.55, 0.2) both;
 }
 
 .mat-datepicker-content-container {
@@ -90,6 +106,60 @@ $touch-max-height: 815px;
     right: 0;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.12);
+  }
+}
+
+._mat-animation-noopable .mat-datepicker-content,
+._mat-animation-noopable .mat-datepicker-calendar-animate {
+  animation-duration: 1ms !important;
+  animation-delay: 0ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mat-datepicker-content,
+  .mat-datepicker-calendar-animate {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+@keyframes ngx-mat-datepicker-enter-dropdown {
+  0% {
+    opacity: 0;
+    transform: scale(1, 0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes ngx-mat-datepicker-enter-dialog {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ngx-mat-datepicker-exit {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ngx-mat-datepicker-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

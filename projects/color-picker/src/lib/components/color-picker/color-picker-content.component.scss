@@ -28,6 +28,10 @@ $mat-colorpicker-touch-max-height: 788px;
   color: rgba(0, 0, 0, 0.87);
   padding: 16px;
 
+  &.ngx-mat-colorpicker-animate {
+    animation: ngx-mat-colorpicker-enter 120ms cubic-bezier(0, 0, 0.2, 1) both;
+  }
+
   .ngx-mat-color-palette {
     width: $mat-colorpicker-non-touch-calendar-width;
     height: $mat-colorpicker-non-touch-calendar-height;
@@ -59,5 +63,28 @@ $mat-colorpicker-touch-max-height: 788px;
   .mat-colorpicker-content-touch .ngx-mat-color-palette {
     width: $mat-colorpicker-touch-portrait-width;
     height: $mat-colorpicker-touch-portrait-height;
+  }
+}
+
+._mat-animation-noopable .ngx-mat-colorpicker-content {
+  animation-duration: 1ms !important;
+  animation-delay: 0ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ngx-mat-colorpicker-content {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+@keyframes ngx-mat-colorpicker-enter {
+  0% {
+    opacity: 0;
+    transform: scale(1, 0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
   }
 }
