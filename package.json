@@ -5,12 +5,12 @@
   "author": "HO Hong Quan",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GNURub/angular-material-components.git"
+    "url": "git+https://github.com/kupchic/angular-material-datepicker.git"
   },
   "bugs": {
-    "url": "https://github.com/GNURub/angular-material-components/issues"
+    "url": "https://github.com/kupchic/angular-material-datepicker/issues"
   },
-  "homepage": "https://github.com/GNURub/angular-material-components",
+  "homepage": "https://github.com/kupchic/angular-material-datepicker",
   "keywords": [
     "angular",
     "angular2",
@@ -22,6 +22,7 @@
     "angular 17",
     "angular 18",
     "angular 19",
+    "angular 20",
     "angular-material",
     "angular material datetime picker",
     "angular material time picker",
@@ -52,7 +53,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "codecov": "codecov",
-    "build:ci": "ng build -c=production --output-path docs --base-href https://gnurub.github.io/angular-material-components/"
+    "build:ci": "ng build -c=production --output-path docs --base-href https://kupchic.github.io/angular-material-datepicker/"
   },
   "private": false,
   "dependencies": {
