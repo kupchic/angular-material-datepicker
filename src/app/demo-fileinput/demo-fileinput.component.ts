@@ -77,9 +77,9 @@ export class DemoFileInputComponent implements OnInit {
   <mat-hint>Hint</mat-hint>
 </mat-form-field>`;
 
-  code1 = `npm install --save @ng-cmps/file-input`;
+  code1 = `npm install --save @ngx-cmps/file-input`;
 
-  code2 = `import { NgxMatFileInputComponent } from '@ng-cmps/file-input';
+  code2 = `import { NgxMatFileInputComponent } from '@ngx-cmps/file-input';
 
   @Component({
      ...
