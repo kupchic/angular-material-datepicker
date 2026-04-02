@@ -1,6 +1,6 @@
 {
-  "name": "@ngxmc/moment-adapter",
-  "version": "19.2.2",
+  "name": "@ngx-cmps/moment-adapter",
+  "version": "20.0.2",
   "description": "Angular Material Moment Adapter",
   "author": "HO Hong Quan",
   "license": "MIT",
@@ -10,8 +10,8 @@
   },
   "homepage": "https://github.com/GNURub/angular-material-components",
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
     "moment": "^2.0.0"
   }
 }

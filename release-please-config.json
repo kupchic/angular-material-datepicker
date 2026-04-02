@@ -6,19 +6,19 @@
   ],
   "release-type": "node",
   "packages": {
-    "@ngxmc/color-picker": {
+    "@ngx-cmps/color-picker": {
       "path": "projects/color-picker",
       "release-type": "node"
     },
-    "@ngxmc/datetime-picker": {
+    "@ngx-cmps/datetime-picker": {
       "path": "projects/datetime-picker",
       "release-type": "node"
     },
-    "@ngxmc/file-input": {
+    "@ngx-cmps/file-input": {
       "path": "projects/file-input",
       "release-type": "node"
     },
-    "@ngxmc/moment-adapter": {
+    "@ngx-cmps/moment-adapter": {
       "path": "projects/moment-adapter",
       "release-type": "node"
     }

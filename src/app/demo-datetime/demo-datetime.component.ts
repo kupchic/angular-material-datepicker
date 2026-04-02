@@ -113,7 +113,7 @@ export class DemoDatetimeComponent {
     ]
   })
   export class AppComponent { }`;
-  public code4 = 'npm install --save  @ngxmc/moment-adapter';
+  public code4 = 'npm install --save  @ngx-cmps/moment-adapter';
   public code5 = `@Injectable()
   export class CustomDateAdapter extends NgxMatDateAdapter<D> {...}
   // D can be Date, Moment or customized type`;

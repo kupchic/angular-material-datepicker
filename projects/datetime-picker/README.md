@@ -54,7 +54,7 @@ NgxMatDateAdapter. You must import one of the following modules at your applicat
 provideNgxMatNativeDate, NgxMatMomentDateModule, or provide a custom implementation._
 
 ```typescript
-import { provideNgxMatNativeDate } from '@ngxmc/datetime-picker';
+import { provideNgxMatNativeDate } from '@ngx-cmps/datetime-picker';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -187,12 +187,12 @@ The easiest way to ensure this is to import one of the provided date modules:
 | **Date type**         | Date                       | Moment                                                                              |
 | **Supported locales** | en-US                      | [See project for details](https://github.com/moment/moment/tree/develop/src/locale) |
 | **Dependencies**      | None                       | [Moment.js](https://momentjs.com/)                                                  |
-| **Import from**       | @ngxmc/datetime-picker     | [@ngxmc/moment-adapter](https://www.npmjs.com/package/@ngxmc/moment-adapter)        |
+| **Import from**       | @ngx-cmps/datetime-picker  | [@ngx-cmps/moment-adapter](https://www.npmjs.com/package/@ngx-cmps/moment-adapter)  |
 
 To use provideNgxMatMomentDate:
 
 ```
-npm install --save  @ngxmc/moment-adapter
+npm install --save  @ngx-cmps/moment-adapter
 ```
 
 Please note: provideNgxMatNativeDate is based off the functionality available in JavaScript's native

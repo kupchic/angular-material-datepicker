@@ -7,7 +7,15 @@
     "sourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "paths": {
+      "@ngx-cmps/datetime-picker": [
+        "../../dist/@ngx-cmps/datetime-picker"
+      ],
+      "@ngx-cmps/datetime-picker/*": [
+        "../../dist/@ngx-cmps/datetime-picker/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
