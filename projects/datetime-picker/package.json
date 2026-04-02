@@ -1,5 +1,5 @@
 {
-  "name": "@ng-cmps/datetime-picker",
+  "name": "@ngx-cmps/datetime-picker",
   "version": "20.0.0",
   "description": "Angular Material Datetime Picker",
   "author": "HO Hong Quan",
