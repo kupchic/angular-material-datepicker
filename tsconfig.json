@@ -24,37 +24,25 @@
     ],
     "paths": {
       "@ngx-cmps/*": [
-        "projects/*/src/public-api.ts"
+        "dist/@ngx-cmps/*"
       ],
       "@ngx-cmps/color-picker": [
-        "projects/color-picker/src/public-api.ts"
+        "dist/@ngx-cmps/color-picker"
       ],
       "@ngx-cmps/color-picker/*": [
-        "projects/color-picker/src/*"
+        "dist/@ngx-cmps/color-picker/*"
       ],
       "@ngx-cmps/datetime-picker": [
-        "projects/datetime-picker/src/public-api.ts"
+        "dist/@ngx-cmps/datetime-picker"
       ],
       "@ngx-cmps/datetime-picker/*": [
-        "projects/datetime-picker/src/*"
-      ],
-      "@ngx-cmps/file-input": [
-        "projects/file-input/src/public-api.ts"
-      ],
-      "@ngx-cmps/file-input/*": [
-        "projects/file-input/src/*"
-      ],
-      "@ngx-cmps/moment-adapter": [
-        "projects/moment-adapter/src/public-api.ts"
-      ],
-      "@ngx-cmps/moment-adapter/*": [
-        "projects/moment-adapter/src/*"
+        "dist/@ngx-cmps/datetime-picker/*"
       ],
       "file-input": [
-        "projects/file-input/src/public-api.ts"
+        "dist/@ngx-cmps/file-input"
       ],
       "file-input/*": [
-        "projects/file-input/src/*"
+        "dist/@ngx-cmps/file-input/*"
       ]
     },
     "useDefineForClassFields": false,
