@@ -67,7 +67,6 @@ export const MAT_COLORPICKER_VALIDATORS: any = {
   ],
   host: {
     '[attr.aria-haspopup]': '_picker ? "dialog" : null',
-    '[attr.aria-owns]': '(_picker?.opened && _picker.id) || null',
     '[disabled]': 'disabled',
     '(input)': '_onInput($event.target.value)',
     '(change)': '_onChange()',

@@ -1,6 +1,6 @@
 {
   "name": "@ngx-cmps/datetime-picker",
-  "version": "20.0.2",
+  "version": "21.0.0",
   "description": "Angular Material Datetime Picker",
   "author": "HO Hong Quan",
   "repository": {
@@ -23,6 +23,7 @@
     "angular 18",
     "angular 19",
     "angular 20",
+    "angular 21",
     "angular-material",
     "angular material datetime picker",
     "angular material time picker",
@@ -36,11 +37,11 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/cdk": "^20.0.0",
-    "@angular/common": "^20.0.0",
-    "@angular/core": "^20.0.0",
-    "@angular/forms": "^20.0.0",
-    "@angular/material": "^20.0.0",
-    "@angular/platform-browser": "^20.0.0"
+    "@angular/cdk": "^21.0.0",
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@angular/forms": "^21.0.0",
+    "@angular/material": "^21.0.0",
+    "@angular/platform-browser": "^21.0.0"
   }
 }
