@@ -24,7 +24,8 @@ choosing time.
 Choose the version corresponding to your Angular version:
 
 | Angular | @ngx-cmps/datetime-picker       |
-| ------- | ------------------------------- |
+|---------|---------------------------------|
+| 20      | 20.x+                           |
 | 19      | 19.x+                           |
 | 18      | 18.x+                           |
 | 16      | 16.x+                           |
